@@ -11,6 +11,8 @@ import UIKit
 class ArticleTableViewController: UITableViewController, UITextFieldDelegate {
     var allArticles = [Article]()
     var articles = [Article]()
+    var sectionDict = [String:Int]()
+    
     let identifier = "articleCell"
     
     override func viewDidLoad() {
@@ -30,6 +32,8 @@ class ArticleTableViewController: UITableViewController, UITextFieldDelegate {
                         
                         // start off with everything
                         self.articles = self.allArticles
+                        self.updateSectionDictionary()
+
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
                         }
@@ -42,18 +46,23 @@ class ArticleTableViewController: UITableViewController, UITextFieldDelegate {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        return sectionDict.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.articles.count
+        let key = self.sectionDict.keys.sorted()[section]
+        return self.sectionDict[key] ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: self.identifier, for: indexPath) as! ArticleTableViewCell
-        let article = articles[indexPath.row]
+        
+        let key = self.sectionDict.keys.sorted()[indexPath.section]
+        let predicate = NSPredicate(format: "section = %@", key)
+        let article = self.articles.filter { predicate.evaluate(with: $0) }[indexPath.row]
+        
+        //let article = articles[indexPath.row]
         
         cell.titleLabel.text = article.title
         cell.abstractLabel.text = article.abstract + "PER: " + article.per_facet.joined(separator: " ")
@@ -62,12 +71,25 @@ class ArticleTableViewController: UITableViewController, UITextFieldDelegate {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let key = self.sectionDict.keys.sorted()[section]
+        return key
+    }
+    
     func applyPredicate(search: String) {
         //let predicate = NSPredicate(format:"abstract contains[c] %@ or title contains[c] %@", search, search)
         let predicate = NSPredicate(format:"ANY per_facet contains[c] %@", search) // Trump, Donald J
         
         self.articles = self.allArticles.filter { predicate.evaluate(with: $0) }
+        updateSectionDictionary()
         self.tableView.reloadData()
+    }
+    
+    func updateSectionDictionary() {
+        self.sectionDict.removeAll()
+        for article in self.articles {
+            self.sectionDict[article.section] = (self.sectionDict[article.section] ?? 0) + 1
+        }
     }
     
     // MARK: - TextField Delegate
@@ -78,6 +100,7 @@ class ArticleTableViewController: UITableViewController, UITextFieldDelegate {
             }
             else {
                 self.articles = self.allArticles
+                updateSectionDictionary()
                 self.tableView.reloadData()
             }
         }
