@@ -21,7 +21,7 @@ class ArticleTableViewController: UITableViewController, UITextFieldDelegate {
         self.tableView.estimatedRowHeight = 200
         self.tableView.rowHeight = UITableViewAutomaticDimension
 
-        APIRequestManager.manager.getData(endPoint: "https://api.nytimes.com/svc/topstories/v2/home.json?api-key=f41c1b23419a4f55b613d0a243ed3243")  { (data: Data?) in
+        APIRequestManager.manager.getData(endPoint: "https://api.nytimes.com/svc/topstories/v2/home.json?api-key=3d62a33fab7842ac854099b08c5aef7b")  { (data: Data?) in
             if let validData = data {
                 if let jsonData = try? JSONSerialization.jsonObject(with: validData, options:[]) {
                     if let wholeDict = jsonData as? [String:Any],
@@ -42,12 +42,10 @@ class ArticleTableViewController: UITableViewController, UITextFieldDelegate {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return self.articles.count
     }
 
@@ -63,8 +61,8 @@ class ArticleTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     func applyPredicate(search: String) {
-        //let predicate = NSPredicate(format:"abstract contains[c] %@ or title contains[c] %@", search, search)
-        let predicate = NSPredicate(format:"ANY per_facet contains[c] %@", search) // Trump, Donald J
+        let predicate = NSPredicate(format:"abstract contains[c] %@ or title contains[c] %@", search, search)
+        //let predicate = NSPredicate(format:"ANY per_facet contains[c] %@", search) // Trump, Donald J
         
         self.articles = self.allArticles.filter { predicate.evaluate(with: $0) }
         self.tableView.reloadData()

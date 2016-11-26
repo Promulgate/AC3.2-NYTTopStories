@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1E08187D1DE0FA1E004B4E0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E08187C1DE0FA1E004B4E0D /* AppDelegate.swift */; };
-		1E08187F1DE0FA1E004B4E0D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E08187E1DE0FA1E004B4E0D /* ViewController.swift */; };
 		1E0818821DE0FA1E004B4E0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E0818801DE0FA1E004B4E0D /* Main.storyboard */; };
 		1E0818841DE0FA1E004B4E0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E0818831DE0FA1E004B4E0D /* Assets.xcassets */; };
 		1E0818871DE0FA1E004B4E0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E0818851DE0FA1E004B4E0D /* LaunchScreen.storyboard */; };
@@ -21,7 +20,6 @@
 /* Begin PBXFileReference section */
 		1E0818791DE0FA1E004B4E0D /* AC3.2-NYTTopStories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AC3.2-NYTTopStories.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E08187C1DE0FA1E004B4E0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1E08187E1DE0FA1E004B4E0D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1E0818811DE0FA1E004B4E0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1E0818831DE0FA1E004B4E0D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E0818861DE0FA1E004B4E0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -63,15 +61,14 @@
 			isa = PBXGroup;
 			children = (
 				1E0818921DE0FC0A004B4E0D /* APIRequestManager.swift */,
-				1E08187C1DE0FA1E004B4E0D /* AppDelegate.swift */,
-				1E08187E1DE0FA1E004B4E0D /* ViewController.swift */,
-				1E0818801DE0FA1E004B4E0D /* Main.storyboard */,
+				1E0818941DE0FC6F004B4E0D /* Article.swift */,
 				1E08188E1DE0FA5A004B4E0D /* ArticleTableViewCell.swift */,
 				1E0818901DE0FA6C004B4E0D /* ArticleTableViewController.swift */,
+				1E08187C1DE0FA1E004B4E0D /* AppDelegate.swift */,
+				1E0818801DE0FA1E004B4E0D /* Main.storyboard */,
 				1E0818831DE0FA1E004B4E0D /* Assets.xcassets */,
 				1E0818851DE0FA1E004B4E0D /* LaunchScreen.storyboard */,
 				1E0818881DE0FA1E004B4E0D /* Info.plist */,
-				1E0818941DE0FC6F004B4E0D /* Article.swift */,
 			);
 			path = "AC3.2-NYTTopStories";
 			sourceTree = "<group>";
@@ -149,7 +146,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E0818911DE0FA6C004B4E0D /* ArticleTableViewController.swift in Sources */,
-				1E08187F1DE0FA1E004B4E0D /* ViewController.swift in Sources */,
 				1E0818951DE0FC6F004B4E0D /* Article.swift in Sources */,
 				1E0818931DE0FC0A004B4E0D /* APIRequestManager.swift in Sources */,
 				1E08188F1DE0FA5A004B4E0D /* ArticleTableViewCell.swift in Sources */,
@@ -219,7 +215,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -263,7 +259,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -315,6 +311,7 @@
 				1E08188D1DE0FA1E004B4E0D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
